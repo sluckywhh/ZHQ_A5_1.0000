@@ -1,0 +1,5 @@
+aclocal
+autoheader
+automake --add-missing
+autoconf
+CC="arm-linux-gnueabihf-gcc" CXX="arm-linux-gnueabihf-g++" CFLAGS="-O2 -D_GNU_SOURCE" CXXFLAGS="-O2 -D_GNU_SOURCE"  ./configure --host=arm-linux
