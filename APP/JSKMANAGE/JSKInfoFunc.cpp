@@ -645,7 +645,7 @@ INT32 CJSKInfoFunc::GetJSPNo(UINT8 *JSPNo,string &strErr)
 	DBG_PRINT(("ret= %d",ret));
 	if( ret==JSK_SUCCESS)
 	{
-		memcpy((void *)JSPNo,pJSKSendBuf,nOutLen);
+		memcpy((void *)JSPNo,pJSKRevBuf,nOutLen);
 		DBG_PRINT(("JSPNo = %s", JSPNo));
 	}
 	
