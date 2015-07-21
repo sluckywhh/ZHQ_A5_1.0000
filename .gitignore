@@ -14,6 +14,17 @@
 !libmsukapi.a
 !libbarencode.a
 !libJspInterface.a
+#SSLLIB
+!libaisino_pkcs11_engine.a
+!libuniAcceptFramework.a
+!libcurl.a
+!libwt_hw.a
+!libwt_pkcs11.a
+!libwt_skf.a
+!new_libwt_pkcs11.a
+!arm-elf-cryptlib.a
+!libcrypto.a
+!libssl.a
 
 *.tmp
 *.gdb

@@ -14,6 +14,8 @@
 #include "CTjxxhz.h"
 #include "SysMacDef.h"
 
+#define  TJXXCX_MONTHMAX 6
+
 namespace middleware
 {
 /**

@@ -91,6 +91,7 @@ INT32 CTjxxcx::XmlBuild(XMLConstruct *construct, Return_Info *retInfo, CTjxxhz *
 	memset(buf,0,sizeof(buf));
 	sprintf(buf, "%d", MonthCount);
 	construct->AddAttr("count",buf);
+	DBG_PRINT(("YWXML_TJXXCX: MonthCount : %s", buf));
 
 	for (INT32 temp_i=0; temp_i<MonthCount; temp_i++)
 	{
@@ -99,6 +100,7 @@ INT32 CTjxxcx::XmlBuild(XMLConstruct *construct, Return_Info *retInfo, CTjxxhz *
 		memset(buf,0,sizeof(buf));
 		sprintf(buf, "%d", temp_i);
 		construct->AddAttr("xh",buf);
+		DBG_PRINT(("YWXML_TJXXCX: Month_xh : %s", buf));
 
 		construct->AddNode(construct->m_parentElement[4], "qsrq");
 		memset(buf,0,sizeof(buf));
@@ -230,10 +232,10 @@ INT32 CTjxxcx::XmlBuild(XMLConstruct *construct, Return_Info *retInfo, CTjxxhz *
 INT32 CTjxxcx::Execute()
 {
 	Return_Info retInfo;	//	返回信息类对象
-	CTjxxhz tjxxhz[12];		//统计信息汇总类
+	CTjxxhz tjxxhz[TJXXCX_MONTHMAX];		//统计信息汇总类
 	INT32 retcode = 0;
 	INT8 tmpbuf[64];
-	INT32 MonthCount = 12;//支持的最大查询月数
+	INT32 MonthCount = TJXXCX_MONTHMAX;//支持的最大查询月数
 
 	XmlParse(m_pXmlParse, tjxxhz);	//调用XML解析函数
 	CheckYWXmlPara(retInfo.m_retMsg);
@@ -245,6 +247,7 @@ INT32 CTjxxcx::Execute()
 		memset(tmpbuf, 0, sizeof(tmpbuf));
 		sprintf(tmpbuf, "%d", retcode);
 		retInfo.m_retCode = tmpbuf;
+		MonthCount = 0;
 	}
 
 	XmlBuild(m_pXmlConstruct, &retInfo, tjxxhz, MonthCount);	//调用XML组装函数

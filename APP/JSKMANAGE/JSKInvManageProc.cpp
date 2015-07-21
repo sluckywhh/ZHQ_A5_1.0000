@@ -247,6 +247,12 @@ INT32 CJSKInvManageProc::TJXXCX_Proc(string strFplxdm, INT32 &MonthCount, CTjxxh
 		tempedate = tempeDateTime.FormatInt(YYYYMMDD);
 		if (tempedate > nCurDate)
 		{
+			if (1970 == nCurDate/10000)
+			{
+				strErr = "当前日期为1970,请修改";
+				return JSK_FAILURE;
+			}
+			
 			tempedate = nCurDate;
 			DBG_PRINT(("tempedate > nCurDate :%u  ",tempedate));
 		}
