@@ -1,0 +1,7 @@
+aclocal
+autoheader
+automake --add-missing
+autoconf
+#CC="arm-elf-gcc" CXX="arm-elf-g++" CFLAGS="-O2 -D_GNU_SOURCE" CXXFLAGS="-O2 -D_GNU_SOURCE" LDFLAGS="-elf2flt" ./configure
+#CC="arm-elf-gcc -elf2flt -D_GNU_SOURCE" CXX="arm-elf-g++ -elf2flt -D_GNU_SOURCE" ./configure
+CC="/AndroidDevelop/jsptoolchain/bin/arm-linux-gnueabihf-gcc" CXX="/AndroidDevelop/jsptoolchain/bin/arm-linux-gnueabihf-g++" CFLAGS="-I/AndroidDevelop/jsptoolchain/arm-linux-gnueabihf/libc/usr/include -O2 -D_GNU_SOURCE" CXXFLAGS="-I/AndroidDevelop/jsptoolchain/arm-linux-gnueabihf/libc/usr/include -O2 -D_GNU_SOURCE"  ./configure --host=arm-linux

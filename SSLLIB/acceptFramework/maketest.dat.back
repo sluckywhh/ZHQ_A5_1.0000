@@ -1,0 +1,6 @@
+/usr/local/arm_linux_4.8/usr/bin/arm-linux-g++  -c testCommunity.cpp -I./include  -I ../jsp_driver/yiju/include
+
+/usr/local/arm_linux_4.8/usr/bin/arm-linux-g++  -o testCommunity testCommunity.o  ./lib/libuniAcceptFramework.a  ../jsp_driver/yiju/Demo/arm-linux-cryptlib.a  ../curl/lib/libcurl.a   -L../jsp_driver/subin-lib/WTlib -lwt_skf -lwt_pkcs11 -lwt_hw   ../openssl/lib/libssl.a  ../openssl/lib/libcrypto.a  ./lib/libaisino_pkcs11_engine.a  -lssh2 -lrt -lpthread -ldl -Xlinker -zmuldefs
+
+/usr/local/arm_linux_4.8/usr/bin/arm-linux-strip testCommunity
+cp testCommunity  /home/nuvoton/share

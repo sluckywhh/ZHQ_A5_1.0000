@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<UniAceptFramework>
+	<SSL>TA</SSL>
+
+<!--
+<ServiceURL>https://123.126.28.70:8092/acceptFramework/UniAcceptService</ServiceURL>
+<ServiceURL>https://59.41.129.23:444/acceptFramework/UniAcceptService</ServiceURL>
+-->
+<!--
+<ServiceURL>https://59.41.129.24:6002/acceptFramework/UniAcceptService</ServiceURL>
+-->
+<ServiceURL>https://192.168.4.104:9021/acceptFramework/UniAcceptService</ServiceURL>
+<!--
+<ServiceURL>http://192.168.4.104:7020/acceptFramework/UniAcceptService</ServiceURL>
+-->
+<!--
+<ServiceURL>http://192.168.4.104:7020/acceptFramework/UniAcceptService</ServiceURL>
+-->
+<!--
+	<ServiceURL>http://123.126.28.70:7011/acceptFramework/UniAcceptService</ServiceURL>
+	<ServiceURL>http://192.168.4.70:7001/acceptFramework/UniAcceptService</ServiceURL>
+-->
+	<LogEnabled>TRUE</LogEnabled>
+	<!--
+	<CA>
+		<Issuer>aisino</Issuer>
+		<KeyPassword>111111</KeyPassword>
+		<AgentLibraryDir>.</AgentLibraryDir>
+		<AgentLibraryName>aisinoCAAgent.dll</AgentLibraryName>
+		<UploadClientSignCert>TRUE</UploadClientSignCert>
+	</CA>
+	
+	<contentControl>
+		<zip>ZLIB</zip>
+		<encrypt>AES</encrypt>
+		<signature>String</signature>
+	</contentControl>-->
+</UniAceptFramework>
