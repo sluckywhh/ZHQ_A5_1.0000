@@ -215,7 +215,20 @@ INT32 CJSKInvManageProc::TJXXCX_Proc(string strFplxdm, INT32 &MonthCount, CTjxxh
 	char chValue[256], chTmpValue[64];
 	CInvHead *pInvHead, invHead;
 	pInvHead = &invHead;
-	UINT32 nCurDate = TDateTime::CurrentDateTime().FormatInt(YYYYMMDD);
+	//UINT32 nCurDate = TDateTime::CurrentDateTime().FormatInt(YYYYMMDD);
+
+	//获取当期时钟YYYYMMDDHHMMSS
+	memset(chValue, 0, sizeof(chValue));
+	retcode = CJSKInfoFunc::GetJSPCurDate((UINT8 *)chValue, strErr);
+	if(retcode != JSK_SUCCESS)
+	{
+		return retcode;
+	}
+	DBG_PRINT(("chValue = %s", chValue));
+	TDateTime CurDate(chValue, DATE_POS);
+
+	UINT32 nCurDate =CurDate.FormatInt(YYYYMMDD);
+     DBG_PRINT(("nCurDate= %u",nCurDate));
 
 	DBG_PRINT(("MonthCount= %d",MonthCount));
 	while((sDateTime <= eDateTime)&&(itemp<MonthCount))
