@@ -20,6 +20,12 @@
 #define XML_FILE_NAME_KFSBM		"ZZ_"				//开票软件开发商编码
 #define XML_FILE_NAME_ENCODE	"9999_"				//4位加解密算法版本号
 
+//发票上传标志
+#define INV_UPLOAD_FLAG0	0		//未上传
+#define INV_UPLOAD_FLAG1	1		//已上传，未下载结果成功
+#define INV_UPLOAD_FLAG2	2		//上传发票错误
+
+
 typedef struct _JSKInvDet
 {
 	string m_spbm;			/**< 商品编码 */

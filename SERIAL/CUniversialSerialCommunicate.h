@@ -89,6 +89,8 @@ private:
 	UINT8 fpbl();
 	//获取离线相关数据
 	UINT8 hqlxsj();
+	//转换器清库
+	UINT8 zhqqk();
 
 	//配置IP地址函数
 	int ifConfig(const char *ifname,  const char *ipaddr,const char *netmask, const char *gwip, const char *dns);

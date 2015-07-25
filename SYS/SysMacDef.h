@@ -3,13 +3,8 @@
 
 #include "VersionConfig.h"
 
-#if (CORP_NAME_LEN_TPYE == 1)
-#define CORP_NAME_LEN					200		//企业名称长度
-#define PAYER_NAME_LEN					200		//付款单位名称长度
-#else
-#define CORP_NAME_LEN					70		
-#define PAYER_NAME_LEN					64		
-#endif
+#define CORP_NAME_LEN					80		
+#define PAYER_NAME_LEN					80		
 
 #define TAX_ID_NUM						6		//税种税目总数
 #define MAX_INV_ITEM_NUM				32
@@ -83,6 +78,7 @@
 //#define SELF_DEF_TAB_LEN                   30  //自定义标签长度
 //#define SELF_DEF_CONT_LEN                  30  //自定义内容长度
 
+#define SERIAL_BAUDRATE						9600		//转换器通信串口波特率
 
 
 /*! 款机启动检测结果 */
@@ -176,12 +172,6 @@
 //MAC地址下载 相关 by yy 20120524
 #define MAC_LEN	                 18	 /**< 存储MAC地址的缓存长度*/
 
-//公共配置区域
-#if (RELEASE_VER == 1)
-#define AUTOISSUE 				0				/**< 1 = 容量测试开启， 0 = 容量测试关闭*/
-#else
-#define AUTOISSUE 				1		
-#endif
 
 #define DAYSUM_LIMIT_DAYS       2000			/**< 机器允许开票的天数*/
 #define DEC_LIMIT_DAYS          100				/**< 机器允许申报的最长天数*/

@@ -5,7 +5,6 @@
 
 #include "SysArgMac.h"
 #include "JSKInfoFunc.h"
-#include "SerialConfig.h"
 
 #include "CSysArg.h"
 #include "CInvHead.h"

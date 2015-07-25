@@ -694,9 +694,6 @@ INT8 CInvHead::DeleteRecord(UINT32 nDelDate)
 		//		FOR_DELAY(0xFFFFFF);//delay for some time
 		if (SQLITE_OK != ret)
 		{
-#if (LANGCHAO_LIB == 0)
-			Beep_On();
-#endif
 			nIndex = 0;
 			do 
 			{

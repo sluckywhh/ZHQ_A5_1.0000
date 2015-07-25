@@ -5,7 +5,7 @@
 //#include "error_code.h"
 
 #define SERIAL_DEVICE						"/dev/ttyS1"
-#define SERIAL_BAUDRATE						9600
+//#define SERIAL_BAUDRATE						9600
 
 #define SERIAL_BUFFER_MAX_LEN				65535UL							//串口Buf最大长度	
 #define BUSINESS_DATA_BUF_MAX_LEN			1*1024*1024						//业务缓冲区长度

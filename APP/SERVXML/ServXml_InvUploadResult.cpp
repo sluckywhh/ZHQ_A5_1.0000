@@ -138,10 +138,10 @@ INT32 CInvUpResult::XmlBusinessParse(XMLParse *pXmlParse, void *pBusiness, DataO
 	}
 */
 
-	memset(g_Xml_ExchangeBuf, 0, PROTOCOL_OUT_BUFF_LEN);
-	memcpy(g_Xml_ExchangeBuf, pData->pBuff, pData->outLen);
-	pData->fill(g_Xml_ExchangeBuf, pData->outLen);
-	memset(g_Xml_ExchangeBuf, 0, PROTOCOL_OUT_BUFF_LEN);
+	memset(g_Xml_ExchangeBuf_Inv, 0, PROTOCOL_OUT_BUFF_LEN);
+	memcpy(g_Xml_ExchangeBuf_Inv, pData->pBuff, pData->outLen);
+	pData->fill(g_Xml_ExchangeBuf_Inv, pData->outLen);
+	memset(g_Xml_ExchangeBuf_Inv, 0, PROTOCOL_OUT_BUFF_LEN);
 
 	return SUCCESS;
 }
@@ -152,7 +152,7 @@ INT32 CInvUpResult::CommunicationProc(void* pDataIn, void* pDataOut, string &str
 
 	NoteData_Para noteData;
 	noteData.m_appType = NET_FPSCJGXZ;	//此处设置业务类型
-	DataOutType dataOut(g_Xml_OutBuf, PROTOCOL_OUT_BUFF_LEN);
+	DataOutType dataOut(g_Xml_OutBuf_Inv, PROTOCOL_OUT_BUFF_LEN);
 	res = BuildXml(pDataIn, &dataOut, &noteData, strErr);
 	DBG_PRINT(("res = %u", res));
 	if (res != SUCCESS)
@@ -163,7 +163,7 @@ INT32 CInvUpResult::CommunicationProc(void* pDataIn, void* pDataOut, string &str
 	DBG_PRINT(("outLen = %u", dataOut.outLen));
 
 	//////////////////////////////////////////////////////////////////////////
-	//此处为处理流程，将上面组织的数据发送给库SSL接口，接收到的数据放入g_Xml_OutBuf中。
+	//此处为处理流程，将上面组织的数据发送给库SSL接口，接收到的数据放入g_Xml_OutBuf_Inv中。
 	//////////////////////////////////////////////////////////////////////////
 #if SSL_USE_TYPE == 1
 	int rec_len = PROTOCOL_OUT_BUFF_LEN;
@@ -187,7 +187,7 @@ INT32 CInvUpResult::CommunicationProc(void* pDataIn, void* pDataOut, string &str
 	int retval = 0;
 	CJSKInfoFunc::MutexLock();
 	retval=aisino_ssl_transfer_call(SSL_AUTH_CODE,(char*)strTechMsg.c_str(),strTechMsg.size(),
-		(unsigned char*)g_Xml_OutBuf,dataOut.outLen,(unsigned char*)g_Xml_ExchangeBuf,&rec_len,errBuf);
+		(unsigned char*)g_Xml_OutBuf_Inv,dataOut.outLen,(unsigned char*)g_Xml_ExchangeBuf_Inv,&rec_len,errBuf);
 	CJSKInfoFunc::MutexUnlock();
 	DBG_PRINT(("retval = %d", retval));
 	if( retval != 0)
@@ -198,13 +198,13 @@ INT32 CInvUpResult::CommunicationProc(void* pDataIn, void* pDataOut, string &str
 	}
 
 	DBG_PRINT(("rec_len = %d", rec_len));
-	dataOut.fill(g_Xml_ExchangeBuf, rec_len);
-	memset(g_Xml_ExchangeBuf, 0, PROTOCOL_OUT_BUFF_LEN);
+	dataOut.fill(g_Xml_ExchangeBuf_Inv, rec_len);
+	memset(g_Xml_ExchangeBuf_Inv, 0, PROTOCOL_OUT_BUFF_LEN);
 
 #ifdef XML_DEBUG_OUT
 	printf("--------------------------CInvUpResultOutinfo rec begin-----------------------------------\n");
 	DBG_PRINT(("rec_len = %d", rec_len));
-	printf("%s\n", g_Xml_OutBuf);
+	printf("%s\n", g_Xml_OutBuf_Inv);
 	printf("\n------------------------CInvUpResultOutinfo rec end-------------------------------------\n");
 #endif
 #endif

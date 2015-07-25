@@ -361,6 +361,15 @@ INT32 CJSKMakeInvoice::FPCX_Proc(UINT8 cxfs, string cxtj, UINT32 &invNum, CInvHe
 		invServ.Requery();
 		if(invServ.LoadOneRecord() != SQLITE_OK)
 			pInvhead->m_scbz = 1;
+		else
+		{
+			if(invServ.m_upFlag == INV_UPLOAD_FLAG2)
+			{
+				invServ.m_upFlag = INV_UPLOAD_FLAG0;
+				DBG_PRINT(("sqlbuf = %s", sqlbuf));
+				invServ.Update(sqlbuf, &invServ.m_upFlag, NULL);
+			}
+		}
 	}
 	//为1是：起始日期（YYYYMMDD）+终止日期（YYYYMMDD）
 	else if(cxfs == 1)
@@ -421,7 +430,7 @@ INT32 CJSKMakeInvoice::FPSC_Proc(UINT8 czlx, UINT32 &fpzx, string &strInvInfo, s
 		invServ.Requery();
 		if(invServ.LoadOneRecord() == SQLITE_OK)
 		{
-			if(invServ.m_upFlag == 2)
+			if(invServ.m_upFlag == INV_UPLOAD_FLAG2)
 			{
 				g_globalArgLib->m_pthreadFlag = 0;
 				retcode = JSK_COMMON_ERR_NO;
@@ -476,7 +485,7 @@ INT32 CJSKMakeInvoice::FPSC_Proc(UINT8 czlx, UINT32 &fpzx, string &strInvInfo, s
 
 
 	//更新上传标志
-	invServ.m_upFlag = 1;
+	invServ.m_upFlag = INV_UPLOAD_FLAG1;
 	DBG_PRINT(("sqlbuf = %s", sqlbuf));
 	invServ.Update(sqlbuf, &invServ.m_upFlag, NULL);
 	
@@ -865,16 +874,16 @@ INT32 CJSKMakeInvoice::ParseFpscjg(string scqrbw, string &mxjgmw, string &strErr
 
 	xmlParse.XMLParseEnd();
 
-// 	INT8 sqlbuf[128];
-// 	memset(sqlbuf, 0, sizeof(sqlbuf));
-// 	sprintf(sqlbuf, "where FPDM='%s' and FPHM=%u ", tmpfpdm.c_str(), tmpfphm);
-// 	CInvServ invServ;
-// 	invServ.m_upFlag = 2;		//上传错误
-// 	if(strErr.length() > MAX_ERR_MSG_LEN)
-// 		strErr.erase(MAX_ERR_MSG_LEN, strErr.length()-MAX_ERR_MSG_LEN);
-// 	invServ.m_errMsg = tmpCode + ":" + strErr;
-// 	DBG_PRINT(("m_errMsg = %s", invServ.m_errMsg.c_str()));
-// 	invServ.Update(sqlbuf, &invServ.m_upFlag, &invServ.m_errMsg, NULL);
+	INT8 sqlbuf[128];
+	memset(sqlbuf, 0, sizeof(sqlbuf));
+	sprintf(sqlbuf, "where FPDM='%s' and FPHM=%u ", tmpfpdm.c_str(), tmpfphm);
+	CInvServ invServ;
+	invServ.m_upFlag = INV_UPLOAD_FLAG2;		//上传错误
+	if(strErr.length() > MAX_ERR_MSG_LEN)
+		strErr.erase(MAX_ERR_MSG_LEN, strErr.length()-MAX_ERR_MSG_LEN);
+	invServ.m_errMsg = tmpCode + ":" + strErr;
+	DBG_PRINT(("m_errMsg = %s", invServ.m_errMsg.c_str()));
+	invServ.Update(sqlbuf, &invServ.m_upFlag, &invServ.m_errMsg, NULL);
 
 	return JSK_FAILURE;
 }

@@ -12,6 +12,8 @@
 
 INT8 g_Xml_OutBuf[PROTOCOL_OUT_BUFF_LEN];
 INT8 g_Xml_ExchangeBuf[PROTOCOL_OUT_BUFF_LEN];
+INT8 g_Xml_OutBuf_Inv[PROTOCOL_OUT_BUFF_LEN];
+INT8 g_Xml_ExchangeBuf_Inv[PROTOCOL_OUT_BUFF_LEN];
 
 
 CStructOrganize::CStructOrganize()

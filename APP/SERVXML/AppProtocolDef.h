@@ -38,6 +38,8 @@
 	
 extern INT8 g_Xml_OutBuf[];
 extern INT8 g_Xml_ExchangeBuf[];
+extern INT8 g_Xml_OutBuf_Inv[];
+extern INT8 g_Xml_ExchangeBuf_Inv[];
 
 
 //////////////////////////////////////////////////////////////////////////

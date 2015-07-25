@@ -16,6 +16,7 @@
 #include "CInvVol.h"
 #include "CTax.h"
 #include "CTjxxhz.h"
+#include "VersionConfig.h"
 
 //业务流程调用函数接口方式
 #ifndef BUSINESS_JSK_MODE
@@ -25,7 +26,11 @@
 #define BUSINESS_XML_MODE	2		//直连方式调用统一xml接口
 #endif
 #ifndef BUSINESS_TYPE_MODE
+#if (PROJECT_TYPE_MODE == PROJECT_TYPE_ZHQ)
 #define BUSINESS_TYPE_MODE	BUSINESS_JSK_MODE
+// #elif (PROJECT_TYPE_MODE == PROJECT_TYPE_ZJJ)
+// #define BUSINESS_TYPE_MODE	BUSINESS_XML_MODE
+#endif
 #endif
 
 #if BUSINESS_TYPE_MODE == BUSINESS_JSK_MODE
@@ -57,6 +62,9 @@
 
 #ifndef JSK_FAILURE
 #define JSK_FAILURE		-1
+#endif
+#ifndef XML_FAILURE
+#define XML_FAILURE				-1
 #endif
 
 

@@ -307,7 +307,7 @@ void CJSKInfoFunc::MutexLock(void)
 		DBG_PRINT(("===FPKJ MUTEX LOCK ERROR"));
 		//CommonSleep(800);
 	}
-	DBG_PRINT(("********************************Mutex Lock********************************************"));
+	DBG_PRINT(("*******************Mutex Lock******************"));
 #endif
 }
 
@@ -318,7 +318,7 @@ void CJSKInfoFunc::MutexUnlock(void)
 	DBG_ASSERT_EXIT((g_kpmutex != NULL), (" g_kpmutex == NULL!"));
 	
 	int ret = 0;	
-	DBG_PRINT(("*********************************Mutex Unlock******************************************"));
+	DBG_PRINT(("*******************Mutex Unlock****************"));
 	ret = pthread_mutex_unlock(g_kpmutex);
 	if (ret != 0)
 	{

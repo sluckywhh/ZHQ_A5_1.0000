@@ -88,10 +88,10 @@ INT32 CInvUploadEx::XmlBusinessParse(XMLParse *pXmlParse, void *pBusiness, DataO
 		g_gNetArg->SetSlxlh(tmpStr);
 	}
 
-	memset(g_Xml_ExchangeBuf, 0, PROTOCOL_OUT_BUFF_LEN);
-	memcpy(g_Xml_ExchangeBuf, pData->pBuff, pData->outLen);
-	pData->fill(g_Xml_ExchangeBuf, pData->outLen);
-	memset(g_Xml_ExchangeBuf, 0, PROTOCOL_OUT_BUFF_LEN);
+	memset(g_Xml_ExchangeBuf_Inv, 0, PROTOCOL_OUT_BUFF_LEN);
+	memcpy(g_Xml_ExchangeBuf_Inv, pData->pBuff, pData->outLen);
+	pData->fill(g_Xml_ExchangeBuf_Inv, pData->outLen);
+	memset(g_Xml_ExchangeBuf_Inv, 0, PROTOCOL_OUT_BUFF_LEN);
 
 	return SUCCESS;
 }

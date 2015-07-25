@@ -42,9 +42,15 @@ INT32 CYWXmlBase::StartYWXml(string strInput, XMLParse *parse, XMLConstruct *con
 //	printf("\n%s\n",tmpBuff);
 
 	//解析传入的XML参数
+	char *pout=NULL;
+	
 	int ret = parse->XMLParseBegin(XML_RESPONSE_FILE);
 	DBG_PRINT(("ret = %d", ret));
-	ywlx = parse->m_RootElement->Attribute(XML_BUSINESS_ID);
+	pout = (char *)parse->m_RootElement->Attribute(XML_BUSINESS_ID);
+	if (pout == NULL)
+		return JSK_FAILURE;
+	
+	ywlx.assign(pout);
 	m_ywlx = ywlx;
 	DBG_PRINT(("ywlx = %s", ywlx.c_str()));
 

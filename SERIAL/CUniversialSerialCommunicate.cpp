@@ -7,6 +7,7 @@
 #include "DataDesign.h"
 #include "IncludeMe.h"
 #include "GlobalNetArg.h"
+#include "ClearDepotFunc.h"
 
 #include "LOGCTRL.h"
 //#define NO_POS_DEBUG
@@ -131,6 +132,9 @@ UINT8 CUniversialSerialCommunicate::handleSerialCMD(){
 		break;
 	case SERIAL_HQLXSJ_CMD:
 		hqlxsj();
+		break;
+	case SERIAL_ZHQQK_CMD:
+		zhqqk();
 		break;
 	default:
 		m_serialProtocol->Rsp_ERR(SERCMD_CMDNO_ERR);
@@ -2390,6 +2394,20 @@ void CUniversialSerialCommunicate::FilterSpace(string &str)
 	return;
 }
 
+//转换器清库函数
+UINT8 CUniversialSerialCommunicate::zhqqk(){
+	DBG_PRINT(("----------转换器清库----------"));
+
+	CClearDepotFunc clearfunc;
+	UINT8 ret = clearfunc.ClearDepot(strErr);
+	if(ret != SUCCESS)
+	{
+		m_serialProtocol->Rsp_ERR(strErr);
+	}
+
+	m_serialProtocol->Rsp_OK();
+	return SUCCESS;
+}
 
 #ifndef WIN32
 void * PthreadInvUpLoad(void *arg)

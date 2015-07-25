@@ -2,7 +2,7 @@
 
 noinst_LIBRARIES = libaweapp.a
 
-libaweapp_a_SOURCES = CGlobalArgLib.cpp  OperateDiskProc.cpp
+libaweapp_a_SOURCES = CGlobalArgLib.cpp  OperateDiskProc.cpp ClearDepotFunc.cpp
 
 SUBDIRS = JSKMANAGE YWXML SERVXML COMMON SKJYWXML
 

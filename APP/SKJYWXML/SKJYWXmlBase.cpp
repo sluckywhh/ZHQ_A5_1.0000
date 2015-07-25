@@ -46,8 +46,14 @@ INT32 CSKJYWXmlBase::BuildProc()
 INT32 CSKJYWXmlBase::ParseProc()
 {
 	DBG_PRINT(("ParseProc Begin"));
+	char *pout=NULL;
+
 	m_pXmlParse.XMLParseBegin(KJ_XML_RESPONSE_FILE);
-	m_ywlx = m_pXmlParse.m_RootElement->Attribute(XML_BUSINESS_ID);
+	pout = (char *)m_pXmlParse.m_RootElement->Attribute(XML_BUSINESS_ID);
+	if (pout == NULL)
+		return XML_FAILURE;
+
+	m_ywlx.assign(pout);
 	DBG_PRINT(("m_ywlx = %s", m_ywlx.c_str()));
 
 	INT32 retcode = 0;

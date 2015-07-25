@@ -41,8 +41,8 @@
 #define POS_ASSERT_ON
 
 //#define POS_DEBUG_TO_FILE
-#define POS_DEBUG_TO_SERIAL
-//#define POS_DEBUG_TO_TTY
+//#define POS_DEBUG_TO_SERIAL
+#define POS_DEBUG_TO_TTY
 
 //数据库访问单元测试开关
 #define POS_DBA_UNIT_TEST

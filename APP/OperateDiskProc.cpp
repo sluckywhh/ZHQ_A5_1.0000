@@ -4,9 +4,9 @@
 #include "CGlobalArgLib.h"
 #include "GlobalNetArg.h"
 #include "commonFunc.h"
-#include "BusinessBase.h"
+#include "VersionConfig.h"
 
-#if BUSINESS_TYPE_MODE == BUSINESS_XML_MODE
+#if (PROJECT_TYPE_MODE == PROJECT_TYPE_ZJJ)
 #include "YWXML_SKSBBHCX.h"
 #include "YWXML_SKPXXCX.h"
 #include "YWXML_BSPXXCX.h"
@@ -51,7 +51,7 @@
 
 static int g_initParaFlag = 0;
 
-#if BUSINESS_TYPE_MODE == BUSINESS_XML_MODE
+#if (PROJECT_TYPE_MODE == PROJECT_TYPE_ZJJ)
 int InitPara(string &strErr)
 {
 	CDB *m_db = CDB::GetInstance();
@@ -80,7 +80,7 @@ int InitPara(string &strErr)
 
 void OperateDisk(string sInputInfo, string &sOutputInfo)
 {
-#if BUSINESS_TYPE_MODE == BUSINESS_XML_MODE
+#if (PROJECT_TYPE_MODE == PROJECT_TYPE_ZJJ)
 	DBG_PRINT(("================= Begin OperateDisk() ================="));
 	XMLParse xmlInput;
 	XMLConstruct xmlOutput;
@@ -234,7 +234,7 @@ void OperateDisk(string sInputInfo, string &sOutputInfo)
 void OperateNet(char* pin,string ip,string port,string serverpath,char* service_id,string nsrsbh, 
 				string sInputInfo, string &sOutputInfo,string& Err)
 {
-#if BUSINESS_TYPE_MODE == BUSINESS_XML_MODE
+#if (PROJECT_TYPE_MODE == PROJECT_TYPE_ZJJ)
 	g_gNetArg->SetZskl(pin);
 	g_gNetArg->SetNsrsbh(nsrsbh);
 	g_gNetArg->SetServId(service_id);
@@ -279,7 +279,7 @@ void OperateNet(char* pin,string ip,string port,string serverpath,char* service_
 	{
 		pXmlYW = new CQljs(&xmlOutput, &xmlInput);
 	}
-#if BUSINESS_TYPE_MODE == BUSINESS_XML_MODE
+#if (PROJECT_TYPE_MODE == PROJECT_TYPE_ZJJ)
 	else if(strID == BUSINESS_NETID_LXXXSC)		//离线信息上传
 	{
 		pXmlYW = new CLxxxsc(&xmlOutput, &xmlInput);

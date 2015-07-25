@@ -42,15 +42,26 @@ INT32 CServXml_Zip::XmlBusinessParse(XMLParse *pXmlParse, void *pBusiness, DataO
 	DBG_PRINT(("CServXml_Zip::XmlBusinessParse Begin"));
 	int res = 0;
 	string tmpStr;
+	NoteData_Para *note = (NoteData_Para *)pNote; 
 
 	res = pXmlParse->LocateNodeByName(pXmlParse->m_signNode, "digitalEnvelope");
-	DBG_PRINT(("res = %d", res));
+	DBG_PRINT(("res = %d, note->m_appType = %s", res, note->m_appType.c_str()));
 	if(res != SUCCESS)
 	{
+		if( (note->m_appType == NET_FPSC) || (note->m_appType == NET_FPSCJGXZ) )
+		{
+			memset(g_Xml_ExchangeBuf_Inv, 0, PROTOCOL_OUT_BUFF_LEN);
+			memcpy(g_Xml_ExchangeBuf_Inv, pData->pBuff, pData->outLen);
+			pData->fill(g_Xml_ExchangeBuf_Inv, pData->outLen);
+			memset(g_Xml_ExchangeBuf_Inv, 0, PROTOCOL_OUT_BUFF_LEN);
+		}
+		else
+		{
 		memset(g_Xml_ExchangeBuf, 0, PROTOCOL_OUT_BUFF_LEN);
 		memcpy(g_Xml_ExchangeBuf, pData->pBuff, pData->outLen);
 		pData->fill(g_Xml_ExchangeBuf, pData->outLen);
 		memset(g_Xml_ExchangeBuf, 0, PROTOCOL_OUT_BUFF_LEN);
+		}
 		return SUCCESS;
 	}
 	tmpStr = pXmlParse->GetText();

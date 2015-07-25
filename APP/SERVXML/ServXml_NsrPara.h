@@ -26,7 +26,12 @@ class CNsrParaOutInfo
 public:
 	string m_sqxx;	//授权信息
 	string m_sccs;	//上传参数设置
-	
+public:
+	CNsrParaOutInfo()
+	{
+		m_sqxx = "";
+		m_sccs = "";
+	}
 };
 
 class CNsrPara : public ProtocolXML  

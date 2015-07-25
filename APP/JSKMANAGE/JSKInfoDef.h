@@ -3,12 +3,17 @@
 
 #include <string.h>
 #include "JSKInfoDef.h"
+#include "VersionConfig.h"
 
 #define MAX_SEND_BUFF_LEN	5*1024
 #define MAX_BUFF_LEN	   10*1024
 
 
+#if (PROJECT_TYPE_MODE == PROJECT_TYPE_ZHQ)
 #define PTHREAD_KPMUTEX_OPEN	1	//线程互斥
+#elif (PROJECT_TYPE_MODE == PROJECT_TYPE_ZJJ)
+#define PTHREAD_KPMUTEX_OPEN	0	//线程互斥
+#endif
 
 #define JSK_SUCCESS    0
 #define JSK_FAILURE    -1
