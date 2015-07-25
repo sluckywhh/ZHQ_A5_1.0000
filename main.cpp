@@ -1,7 +1,7 @@
 #include "IncludeMe.h"
 #include "VersionConfig.h"
 #include "OperateDiskProc.h"
-
+#include "JSKInfoFunc.h"
 #include "StructOrganize.h"
 #include "ServXml_NsrPara.h"
 #include "BusinessBase.h"
@@ -28,6 +28,27 @@
 int main()
 {
 	DBG_PRINT(("Programe started !!!"));
+
+	/////////////////////////////////////////////////////////////////////////////////
+#if 1
+	DBG_PRINT(("===== SKSBBH_Proc Begin() ======"));
+	UINT8 sksbbhBuf[20];
+	INT32 retcode = 0;
+	string strErr;
+
+	//获取税控设备编号
+	memset(sksbbhBuf, 0, sizeof(sksbbhBuf));
+	retcode = CJSKInfoFunc::GetJSPNo(sksbbhBuf, strErr);
+	if(retcode != JSK_SUCCESS)
+	{
+		return retcode;
+	}
+    string sksbbh;
+	sksbbh = (INT8 *)sksbbhBuf;
+	DBG_PRINT(("sksbbh = %s", sksbbh.c_str()));
+#endif
+////////////////////////////////////////////////////////////////////
+
 
 	CDB *m_db = CDB::GetInstance();
 	m_db->Open();
