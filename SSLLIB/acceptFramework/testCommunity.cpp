@@ -14,7 +14,7 @@ int main(int argc,char *argv){
 	techMsg.append("<identity>");
 	techMsg.append("<applicationId>zzs_fp_cgl_cj</applicationId>");
 	techMsg.append("<serviceId>jsp_dzdz_cb_zzszp</serviceId>");
-	techMsg.append("<serviceURI>https://192.168.0.104:8002</serviceURI>");
+	techMsg.append("<serviceURI>https://192.168.2.235:7444</serviceURI>");
 	if(argc>2) {
 		techMsg.append("<SSL>TA</SSL>");
 	} else {

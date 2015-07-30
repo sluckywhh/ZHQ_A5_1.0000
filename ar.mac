@@ -1,6 +1,0 @@
-OPEN libskpc.a
-ADDLIB ./LIB/libsqlite3.a
-ADDLIB ./LIB/libJspInterface.a
-ADDLIB ./LIB/libz.a
-SAVE
-END
