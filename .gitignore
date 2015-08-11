@@ -13,7 +13,6 @@
 !libhhkey.a
 !libmsukapi.a
 !libbarencode.a
-!libJspInterface.a
 !libJspInterface_a5.a
 #SSLLIB
 !libaisino_pkcs11_engine.a
